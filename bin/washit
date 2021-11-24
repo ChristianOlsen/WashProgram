@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+from washit import*
+import argparse
+
+def main():
+    #user ineterface osv, use argparse?
+    pass
+    
+    
+    
+if __name__ == "__main__":
+    main()
