@@ -1,2 +1,1 @@
-from .washer import *
-from .program import *
+from washit import*
