@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "washit"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

@@ -1,12 +1,22 @@
-#!/usr/bin/python3
-from washit import*
+#!/usr/bin/env python
+from washit import *
 import argparse
 
-def main():
-    #user ineterface osv, use argparse?
-    pass
+def run(args):
+    """
+    Runs methods with user args
+    """
+    w = Washit(12)
     
+# TODO: add more arguments to parser
+def main(): # NOT FINISHED
+    """setup parser"""
+    parser = argparse.ArgumentParser(description='Book or queue for a washer.')
+    parser.add_argument('-b', '--book', type=str, required=True,
+                        help='Book an available washer. Provide userid and programtype')
     
+    args = parser.parse_args()
+    run(args)
     
 if __name__ == "__main__":
     main()

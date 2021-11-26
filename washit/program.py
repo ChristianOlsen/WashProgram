@@ -1,10 +1,11 @@
 from datetime import timedelta
 
+
 class Program:
     
     programTypes= {}
     """
-    programTypes nested dictionary on form
+    programTypes nested dictionary example form
     exampleTypes = {
         'kokvask': {
             'name': 'Kokvask',
