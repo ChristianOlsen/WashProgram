@@ -14,6 +14,7 @@ class Booking:
             temperature (int): in degrees Celcius
             length (int): duration in minutes
         """
+        # TODO: fix ids not iterating by 1
         self.id = Booking.newid()
         self.user = user
         self.program = Program(programType)

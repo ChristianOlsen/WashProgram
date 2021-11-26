@@ -4,6 +4,7 @@ TODO:
 - unit tests
 - complete getters for classes
 - identify user
+- Add datetime parser, so methods can take datetime string as well
 - updateWaitlist() should be called regularily for check if users in waitlist can be notified of free washer
 - type checks in functions E.G. istinstance(x, type) and raise Value/TypeErrors
 - connect users, washers, booking and programs to database, make SQL queries
@@ -44,6 +45,18 @@ class Washit:
         return Program.getPrograms()
 
     def book(self, user, programType, start):
+        """
+        Tries to book a timeslot in any of the washers availible.
+        User is only allowed to have 1 booking per washer.
+        
+        Args:
+            user (User): User instance of the user, who wants to book
+            programType (string): type of washing program. E.G. 'kokvask'
+            start (Datetime): when the booking is requested to start
+
+        Returns:
+            boolean: True if the booking was successful at the requested starttime, else false
+        """
         for washer in self.washers:
             if washer.book(user, programType, start):
                 #print(f'Booked {washer.program.description} on washer #{self.id} from {b.getStart("seconds")} to {b.getEnd("seconds")}.')
@@ -53,6 +66,16 @@ class Washit:
         return False
 
     def cancelBook(self, user, bookId):
+        """
+        Tries to cancel a booking for a user, gived bookId.
+
+        Args:
+            user (User): user who wants to cancel
+            bookId ([type]): id of booking. Should be printed at successful booking
+
+        Returns:
+            boolean: False if the booking on user was not found. True if successful cancel.
+        """
         for b in user.bookings:
             if bookId == b.id:
                 user.bookings.remove(b)
@@ -82,6 +105,12 @@ class Washit:
             self.waitlist.pop(i)
 
     def _setup(self, number_of_washers):
+        """
+        Set up of washers, initial users and programtypes. 
+        
+        Args:
+            number_of_washers (int): number of washers to be deployed in system
+        """
         update_interval = 60  # seconds
 
         for _ in range(number_of_washers):
@@ -90,12 +119,5 @@ class Washit:
         self.addProgramType('kokvask', 'Kokvask', 60, 90)
         self.addProgramType('tøyvask', 'Tøyvask', 40, 60)
         self.addProgramType('håndvask', 'Håndvask', 30, 20)
-        self.addUser('Ole')
-        self.addUser('Hans')
-        self.addUser('Liv')
         self.updateWaitlist(update_interval)
 
-
-w = Washit(6)
-w.book(w.getUsers()[0], 'kokvask', dt.now())
-print(w.getAllBookings()[0])
