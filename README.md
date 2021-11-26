@@ -49,3 +49,16 @@ washit = Washit(12)
 u1 = User('Chris')
 washit.book(u1, 'kokvask', dt.now())
 ```
+
+### Brainstorm for futher developement
+* docstrings for all functions
+* unit tests
+* complete getters for classes
+* identify user
+* Add datetime parser, so methods can take datetime string as well
+* updateWaitlist() should be called regularily for check if users in waitlist can be notified of free washer
+* type checks in functions E.G. istinstance(x, type) and raise Value/TypeErrors
+* connect users, washers, booking and programs to database, make SQL queries
+* implement web framework to deploy app to web. E.G. FastAPI
+* GUI framework?
+* End-2-end tests, with E.G. Cypress
